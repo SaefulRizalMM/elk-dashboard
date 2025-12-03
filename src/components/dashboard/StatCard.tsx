@@ -38,30 +38,24 @@ export function StatCard({ title, stats, variant = "default", className }: StatC
       <h3 className="text-sm font-semibold text-foreground mb-4 truncate">{title}</h3>
       
       <div className={cn(
-        "grid gap-4",
+        "grid gap-3",
         stats.length === 1 ? "grid-cols-1" : "grid-cols-2"
       )}>
         {stats.map((stat, index) => (
-          <div key={index} className="flex items-start gap-2.5 min-w-0">
-            <div className={cn(
-              "w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center",
-              styles.bg
-            )}>
-              <div className={cn("w-4 h-4 rounded-full", styles.dot)} />
-            </div>
-            
-            <div className="min-w-0 flex-1">
+          <div key={index} className="bg-muted/50 rounded-lg p-3 min-w-0">
+            <div className="flex items-center gap-2 mb-1">
+              <div className={cn("w-3 h-3 rounded-full flex-shrink-0", styles.dot)} />
               <p className="text-lg font-bold text-foreground truncate">{stat.value}</p>
-              <p className="text-xs text-muted-foreground truncate">{stat.label}</p>
-              {stat.sublabel && (
-                <p className={cn(
-                  "text-xs mt-0.5 truncate",
-                  stat.success ? "text-success" : "text-destructive"
-                )}>
-                  {stat.sublabel}
-                </p>
-              )}
             </div>
+            <p className="text-xs text-muted-foreground truncate">{stat.label}</p>
+            {stat.sublabel && (
+              <p className={cn(
+                "text-xs mt-0.5 truncate",
+                stat.success ? "text-success" : "text-destructive"
+              )}>
+                {stat.sublabel}
+              </p>
+            )}
           </div>
         ))}
       </div>
