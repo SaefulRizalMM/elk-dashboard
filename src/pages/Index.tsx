@@ -15,46 +15,46 @@ const Index = () => {
         <DashboardHeader />
         
         {/* Top Stats Row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
           <StatCard
             title="Total Get Schadule Hits"
             stats={[
-              { value: "1,032,578", label: "Access By KAI", sublabel: "Success : 83.92%", success: true },
-              { value: "7,257", label: "Ibook", sublabel: "Success : 83.92%", success: true },
+              { value: "1,032,578", label: "Access By KAI", sublabel: "Success: 83.92%", success: true },
+              { value: "7,257", label: "Ibook", sublabel: "Success: 83.92%", success: true },
             ]}
             variant="success"
           />
           <StatCard
             title="Total Get Schadule Hits"
             stats={[
-              { value: "1,032,578", label: "Access By KAI", sublabel: "Success : 83.92%", success: true },
-              { value: "7257", label: "Ibook", sublabel: "Success : 83.92%", success: true },
+              { value: "1,032,578", label: "Access By KAI", sublabel: "Success: 83.92%", success: true },
+              { value: "7,257", label: "Ibook", sublabel: "Success: 83.92%", success: true },
             ]}
             variant="success"
           />
           <StatCard
             title="Total Payment Hits"
             stats={[
-              { value: "1,032,578", label: "Total Payment Hits", sublabel: "Success : 99.58%", success: true },
+              { value: "1,032,578", label: "Total Payment Hits", sublabel: "Success: 99.58%", success: true },
             ]}
             variant="success"
           />
           <StatCard
             title="Bussiness Logic Payment"
             stats={[
-              { value: "0.07%", label: "Bussines Logic rejected", sublabel: "Reject Count: 33", success: false },
+              { value: "0.07%", label: "Logic rejected", sublabel: "Reject Count: 33", success: false },
             ]}
             variant="danger"
           />
         </div>
 
         {/* Second Stats Row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
           <StatCard
             title="No Schadule"
             stats={[
-              { value: "1,032,578", label: "Access By KAI", sublabel: "Success : 83.92%", success: true },
-              { value: "7,257", label: "Ibook", sublabel: "Success : 83.92%", success: true },
+              { value: "1,032,578", label: "Access By KAI", sublabel: "Success: 83.92%", success: true },
+              { value: "7,257", label: "Ibook", sublabel: "Success: 83.92%", success: true },
             ]}
             variant="success"
           />
@@ -76,7 +76,7 @@ const Index = () => {
           <StatCard
             title="Bussiness Logic Payment"
             stats={[
-              { value: "0.07%", label: "Bussines Logic rejected", sublabel: "Reject Count: 33", success: false },
+              { value: "0.07%", label: "Logic rejected", sublabel: "Reject Count: 33", success: false },
             ]}
             variant="danger"
           />
