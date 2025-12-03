@@ -45,12 +45,12 @@ export function StatCard({ title, stats, variant = "default", className }: StatC
           <div key={index} className="bg-muted/50 rounded-lg p-3 min-w-0">
             <div className="flex items-center gap-2 mb-1">
               <div className={cn("w-3 h-3 rounded-full flex-shrink-0", styles.dot)} />
-              <p className="text-lg font-bold text-foreground truncate">{stat.value}</p>
+              <p className="text-base sm:text-lg font-bold text-foreground truncate">{stat.value}</p>
             </div>
-            <p className="text-xs text-muted-foreground truncate">{stat.label}</p>
+            <p className="text-[10px] sm:text-xs text-muted-foreground break-words">{stat.label}</p>
             {stat.sublabel && (
               <p className={cn(
-                "text-xs mt-0.5 truncate",
+                "text-[10px] sm:text-xs mt-0.5 break-words",
                 stat.success ? "text-success" : "text-destructive"
               )}>
                 {stat.sublabel}
