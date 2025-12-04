@@ -26,7 +26,7 @@ const Index = () => {
               { value: "1,032,578", label: "Access By KAI" },
               { value: "7,257", label: "Ibook" },
             ] : [
-              { value: "1,032,578", label: "Access By KAI" },
+              { value: "1,032,578" },
             ]}
             variant="info"
           />
@@ -36,14 +36,14 @@ const Index = () => {
               { value: "441,431", label: "Access By KAI" },
               { value: "518", label: "Ibook" },
             ] : [
-              { value: "441,431", label: "Access By KAI" },
+              { value: "441,431" },
             ]}
             variant="default"
           />
           <StatCard
             title="Total Payment Hits"
             stats={[
-              { value: "44,550", label: "Total Payment Request" },
+              { value: "44,550", label: showIbook ? "Total Payment Request" : undefined },
             ]}
             variant="success"
           />
@@ -57,7 +57,7 @@ const Index = () => {
               { value: "69.72%", label: "Access By KAI", countLabel: "Success count", countValue: "719,961", success: true },
               { value: "61.17%", label: "Ibook", countLabel: "Success count", countValue: "4,439", success: true },
             ] : [
-              { value: "69.72%", label: "Access By KAI", countLabel: "Success count", countValue: "719,961", success: true },
+              { value: "69.72%", countLabel: "Success count", countValue: "719,961", success: true },
             ]}
             variant="info"
           />
@@ -67,14 +67,14 @@ const Index = () => {
               { value: "13.98%", label: "Access By KAI", countLabel: "Success count", countValue: "61,727", success: true },
               { value: "26.83%", label: "Ibook", countLabel: "Success count", countValue: "139", success: true },
             ] : [
-              { value: "13.98%", label: "Access By KAI", countLabel: "Success count", countValue: "61,727", success: true },
+              { value: "13.98%", countLabel: "Success count", countValue: "61,727", success: true },
             ]}
             variant="default"
           />
           <StatCard
             title="Success Payment"
             stats={[
-              { value: "99.58%", label: "rate", countLabel: "Success count", countValue: "44,362", success: true },
+              { value: "99.58%", label: showIbook ? "rate" : undefined, countLabel: "Success count", countValue: "44,362", success: true },
             ]}
             variant="success"
           />
@@ -88,7 +88,7 @@ const Index = () => {
               { value: "9.33%", label: "Access By KAI", countLabel: "No Schedule", countValue: "96,301", success: false },
               { value: "52.14%", label: "Ibook", countLabel: "No Schedule", countValue: "3,784", success: false },
             ] : [
-              { value: "9.33%", label: "Access By KAI", countLabel: "No Schedule", countValue: "96,301", success: false },
+              { value: "9.33%", countLabel: "No Schedule", countValue: "96,301", success: false },
             ]}
             variant="info"
           />
@@ -98,14 +98,14 @@ const Index = () => {
               { value: "85.57%", label: "Access By KAI", countLabel: "reject count", countValue: "377,754", success: false },
               { value: "73.17%", label: "Ibook", countLabel: "reject count", countValue: "379", success: false },
             ] : [
-              { value: "85.57%", label: "Access By KAI", countLabel: "reject count", countValue: "377,754", success: false },
+              { value: "85.57%", countLabel: "reject count", countValue: "377,754", success: false },
             ]}
             variant="default"
           />
           <StatCard
             title="Bussiness Logic Rejected Payment"
             stats={[
-              { value: "0.07%", label: "Business Logic Rejected", countLabel: "reject count", countValue: "33", success: false },
+              { value: "0.07%", label: showIbook ? "Business Logic Rejected" : undefined, countLabel: "reject count", countValue: "33", success: false },
             ]}
             variant="success"
           />
@@ -119,7 +119,7 @@ const Index = () => {
               { value: "0.001%", label: "Access By KAI", countLabel: "fail count", countValue: "15", success: false },
               { value: "0.000%", label: "Ibook", countLabel: "fail count", countValue: "-", success: false },
             ] : [
-              { value: "0.001%", label: "Access By KAI", countLabel: "fail count", countValue: "15", success: false },
+              { value: "0.001%", countLabel: "fail count", countValue: "15", success: false },
             ]}
             variant="info"
           />
@@ -129,14 +129,14 @@ const Index = () => {
               { value: "0.002%", label: "Access By KAI", countLabel: "fail count", countValue: "7", success: false },
               { value: "0.193%", label: "Ibook", countLabel: "fail count", countValue: "1", success: false },
             ] : [
-              { value: "0.002%", label: "Access By KAI", countLabel: "fail count", countValue: "7", success: false },
+              { value: "0.002%", countLabel: "fail count", countValue: "7", success: false },
             ]}
             variant="default"
           />
           <StatCard
             title="Failure Rate Getschedule"
             stats={[
-              { value: "0.11%", label: "Failure rate Payment", countLabel: "fail count", countValue: "50", success: false },
+              { value: "0.11%", label: showIbook ? "Failure rate Payment" : undefined, countLabel: "fail count", countValue: "50", success: false },
             ]}
             variant="success"
           />
