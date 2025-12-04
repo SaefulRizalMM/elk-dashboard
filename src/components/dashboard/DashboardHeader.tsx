@@ -1,12 +1,27 @@
 import { Bell, Settings } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useLocation } from "react-router-dom";
+
+const dashboardTitles: Record<string, string> = {
+  "/": "Main Dashboard",
+  "/access-by-kai": "Access By KAI Dashboard",
+  "/b2b-service": "B2B Service Dashboard",
+  "/loket-service": "Loket Service Dashboard",
+  "/kci": "KCI Dashboard",
+};
 
 export function DashboardHeader() {
+  const location = useLocation();
+  const currentTitle = dashboardTitles[location.pathname] || "Dashboard";
+
   return (
     <header className="flex items-center justify-between mb-8">
       <div>
-        <h1 className="text-2xl font-bold text-foreground">
+        <p className="text-muted-foreground text-sm mb-1">
           Hai, Welcome Admin
+        </p>
+        <h1 className="text-2xl font-bold text-foreground">
+          {currentTitle}
         </h1>
         <p className="text-muted-foreground text-sm mt-1">
           Monitor your enterprise transactions in real-time
