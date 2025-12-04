@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 interface StatItem {
   value: string;
-  label: string;
+  label?: string;
   countLabel?: string;
   countValue?: string;
   success?: boolean;
@@ -89,11 +89,13 @@ export function StatCard({ title, stats, variant = "default", className }: StatC
             
             {/* Content */}
             <div className="relative z-10">
-              {/* Label with dot */}
-              <div className="flex items-center gap-1.5 mb-1">
-                <div className={cn("w-2.5 h-2.5 rounded-full flex-shrink-0", styles.dot)} />
-                <p className="text-[10px] sm:text-xs font-medium text-foreground/80 truncate">{stat.label}</p>
-              </div>
+              {/* Label with dot - only show if label exists */}
+              {stat.label && (
+                <div className="flex items-center gap-1.5 mb-1">
+                  <div className={cn("w-2.5 h-2.5 rounded-full flex-shrink-0", styles.dot)} />
+                  <p className="text-[10px] sm:text-xs font-medium text-foreground/80 truncate">{stat.label}</p>
+                </div>
+              )}
               
               {/* Count info */}
               {stat.countLabel && (
