@@ -9,7 +9,7 @@ import { useLocation } from "react-router-dom";
 
 const Index = () => {
   const location = useLocation();
-  const isMainDashboard = location.pathname === "/";
+  const showIbook = location.pathname === "/access-by-kai";
 
   return (
     <div className="flex min-h-screen bg-background">
@@ -22,7 +22,7 @@ const Index = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 mb-4">
           <StatCard
             title="Total Getschedule Hits"
-            stats={isMainDashboard ? [
+            stats={showIbook ? [
               { value: "1,032,578", label: "Access By KAI" },
               { value: "7,257", label: "Ibook" },
             ] : [
@@ -32,7 +32,7 @@ const Index = () => {
           />
           <StatCard
             title="Total Booking Hits"
-            stats={isMainDashboard ? [
+            stats={showIbook ? [
               { value: "441,431", label: "Access By KAI" },
               { value: "518", label: "Ibook" },
             ] : [
@@ -53,7 +53,7 @@ const Index = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 mb-4">
           <StatCard
             title="Success Getschedule"
-            stats={isMainDashboard ? [
+            stats={showIbook ? [
               { value: "69.72%", label: "Access By KAI", countLabel: "Success count", countValue: "719,961", success: true },
               { value: "61.17%", label: "Ibook", countLabel: "Success count", countValue: "4,439", success: true },
             ] : [
@@ -63,7 +63,7 @@ const Index = () => {
           />
           <StatCard
             title="Success Booking"
-            stats={isMainDashboard ? [
+            stats={showIbook ? [
               { value: "13.98%", label: "Access By KAI", countLabel: "Success count", countValue: "61,727", success: true },
               { value: "26.83%", label: "Ibook", countLabel: "Success count", countValue: "139", success: true },
             ] : [
@@ -84,7 +84,7 @@ const Index = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 mb-4">
           <StatCard
             title="No Schedule"
-            stats={isMainDashboard ? [
+            stats={showIbook ? [
               { value: "9.33%", label: "Access By KAI", countLabel: "No Schedule", countValue: "96,301", success: false },
               { value: "52.14%", label: "Ibook", countLabel: "No Schedule", countValue: "3,784", success: false },
             ] : [
@@ -94,7 +94,7 @@ const Index = () => {
           />
           <StatCard
             title="Bussiness Logic Rejected Booking"
-            stats={isMainDashboard ? [
+            stats={showIbook ? [
               { value: "85.57%", label: "Access By KAI", countLabel: "reject count", countValue: "377,754", success: false },
               { value: "73.17%", label: "Ibook", countLabel: "reject count", countValue: "379", success: false },
             ] : [
@@ -115,7 +115,7 @@ const Index = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 mb-6">
           <StatCard
             title="Failure Rate Getschedule"
-            stats={isMainDashboard ? [
+            stats={showIbook ? [
               { value: "0.001%", label: "Access By KAI", countLabel: "fail count", countValue: "15", success: false },
               { value: "0.000%", label: "Ibook", countLabel: "fail count", countValue: "-", success: false },
             ] : [
@@ -125,7 +125,7 @@ const Index = () => {
           />
           <StatCard
             title="Failure Rate Booking"
-            stats={isMainDashboard ? [
+            stats={showIbook ? [
               { value: "0.002%", label: "Access By KAI", countLabel: "fail count", countValue: "7", success: false },
               { value: "0.193%", label: "Ibook", countLabel: "fail count", countValue: "1", success: false },
             ] : [
