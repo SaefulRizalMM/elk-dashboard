@@ -14,71 +14,111 @@ const Index = () => {
       <main className="flex-1 p-8 overflow-auto">
         <DashboardHeader />
         
-        {/* Top Stats Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
+        {/* Row 1 - Total Hits */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 mb-4">
           <StatCard
-            title="Total Get Schadule Hits"
+            title="Total Getschedule Hits"
             stats={[
-              { value: "1,032,578", label: "Access By KAI", sublabel: "Success: 83.92%", success: true },
-              { value: "7,257", label: "Ibook", sublabel: "Success: 83.92%", success: true },
+              { value: "1,032,578", label: "Access By KAI" },
+              { value: "7,257", label: "Ibook" },
             ]}
-            variant="success"
+            variant="info"
           />
           <StatCard
-            title="Total Get Schadule Hits"
+            title="Total Booking Hits"
             stats={[
-              { value: "1,032,578", label: "Access By KAI", sublabel: "Success: 83.92%", success: true },
-              { value: "7,257", label: "Ibook", sublabel: "Success: 83.92%", success: true },
+              { value: "441,431", label: "Access By KAI" },
+              { value: "518", label: "Ibook" },
             ]}
-            variant="success"
+            variant="default"
           />
           <StatCard
             title="Total Payment Hits"
             stats={[
-              { value: "1,032,578", label: "Total Payment Hits", sublabel: "Success: 99.58%", success: true },
+              { value: "44,550", label: "Total Payment Request" },
             ]}
             variant="success"
-          />
-          <StatCard
-            title="Bussiness Logic Payment"
-            stats={[
-              { value: "0.07%", label: "Logic rejected", sublabel: "Reject Count: 33", success: false },
-            ]}
-            variant="danger"
           />
         </div>
 
-        {/* Second Stats Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
+        {/* Row 2 - Success */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 mb-4">
           <StatCard
-            title="No Schadule"
+            title="Success Getschedule"
             stats={[
-              { value: "1,032,578", label: "Access By KAI", sublabel: "Success: 83.92%", success: true },
-              { value: "7,257", label: "Ibook", sublabel: "Success: 83.92%", success: true },
+              { value: "69.72%", label: "Access By KAI", countLabel: "Success count", countValue: "719,961", success: true },
+              { value: "61.17%", label: "Ibook", countLabel: "Success count", countValue: "4,439", success: true },
+            ]}
+            variant="info"
+          />
+          <StatCard
+            title="Success Booking"
+            stats={[
+              { value: "13.98%", label: "Access By KAI", countLabel: "Success count", countValue: "61,727", success: true },
+              { value: "26.83%", label: "Ibook", countLabel: "Success count", countValue: "139", success: true },
+            ]}
+            variant="default"
+          />
+          <StatCard
+            title="Success Payment"
+            stats={[
+              { value: "99.58%", label: "rate", countLabel: "Success count", countValue: "44,362", success: true },
             ]}
             variant="success"
+          />
+        </div>
+
+        {/* Row 3 - No Schedule / Rejected */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 mb-4">
+          <StatCard
+            title="No Schedule"
+            stats={[
+              { value: "9.33%", label: "Access By KAI", countLabel: "No Schedule", countValue: "96,301", success: false },
+              { value: "52.14%", label: "Ibook", countLabel: "No Schedule", countValue: "3,784", success: false },
+            ]}
+            variant="info"
           />
           <StatCard
             title="Bussiness Logic Rejected Booking"
             stats={[
-              { value: "85.57%", label: "Access By KAI", sublabel: "Reject Count: 378", success: false },
-              { value: "73.17%", label: "Ibook", sublabel: "Reject Count: 378", success: false },
+              { value: "85.57%", label: "Access By KAI", countLabel: "reject count", countValue: "377,754", success: false },
+              { value: "73.17%", label: "Ibook", countLabel: "reject count", countValue: "379", success: false },
             ]}
-            variant="warning"
+            variant="default"
           />
           <StatCard
-            title="Failure Rate Get Schadule"
+            title="Bussiness Logic Rejected Payment"
             stats={[
-              { value: "0.11%", label: "Total Payment Hits", sublabel: "Fail Count: 60", success: false },
+              { value: "0.07%", label: "Business Logic Rejected", countLabel: "reject count", countValue: "33", success: false },
             ]}
-            variant="warning"
+            variant="success"
+          />
+        </div>
+
+        {/* Row 4 - Failure Rate */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 mb-6">
+          <StatCard
+            title="Failure Rate Getschedule"
+            stats={[
+              { value: "0.001%", label: "Access By KAI", countLabel: "fail count", countValue: "15", success: false },
+              { value: "0.000%", label: "Ibook", countLabel: "fail count", countValue: "-", success: false },
+            ]}
+            variant="info"
           />
           <StatCard
-            title="Bussiness Logic Payment"
+            title="Failure Rate Booking"
             stats={[
-              { value: "0.07%", label: "Logic rejected", sublabel: "Reject Count: 33", success: false },
+              { value: "0.002%", label: "Access By KAI", countLabel: "fail count", countValue: "7", success: false },
+              { value: "0.193%", label: "Ibook", countLabel: "fail count", countValue: "1", success: false },
             ]}
-            variant="danger"
+            variant="default"
+          />
+          <StatCard
+            title="Failure Rate Getschedule"
+            stats={[
+              { value: "0.11%", label: "Failure rate Payment", countLabel: "fail count", countValue: "50", success: false },
+            ]}
+            variant="success"
           />
         </div>
 
