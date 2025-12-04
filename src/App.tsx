@@ -16,6 +16,10 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/access-by-kai" element={<Index />} />
+          <Route path="/b2b-service" element={<Index />} />
+          <Route path="/loket-service" element={<Index />} />
+          <Route path="/kci" element={<Index />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
