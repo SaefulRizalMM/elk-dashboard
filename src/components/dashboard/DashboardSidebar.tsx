@@ -56,7 +56,7 @@ export function DashboardSidebar() {
           <Activity className="w-5 h-5 text-primary-foreground" />
         </div>
         <span className="text-sidebar-primary font-semibold text-lg">
-          Enterprise Monitoring
+          KAI RTS Monitoring
         </span>
       </div>
 
