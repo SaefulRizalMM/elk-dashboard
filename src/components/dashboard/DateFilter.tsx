@@ -1,5 +1,5 @@
 import * as React from "react";
-import { format } from "date-fns";
+import { format, subDays, subHours, subMonths, startOfDay, endOfDay } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { DateRange } from "react-day-picker";
 
@@ -12,22 +12,90 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
+const presets = [
+  {
+    label: "Today",
+    getValue: () => ({
+      from: startOfDay(new Date()),
+      to: endOfDay(new Date()),
+    }),
+  },
+  {
+    label: "Last 24 Hours",
+    getValue: () => ({
+      from: subHours(new Date(), 24),
+      to: new Date(),
+    }),
+  },
+  {
+    label: "Last 7 Days",
+    getValue: () => ({
+      from: subDays(new Date(), 7),
+      to: new Date(),
+    }),
+  },
+  {
+    label: "Last 30 Days",
+    getValue: () => ({
+      from: subDays(new Date(), 30),
+      to: new Date(),
+    }),
+  },
+  {
+    label: "Last 3 Months",
+    getValue: () => ({
+      from: subMonths(new Date(), 3),
+      to: new Date(),
+    }),
+  },
+  {
+    label: "Last 6 Months",
+    getValue: () => ({
+      from: subMonths(new Date(), 6),
+      to: new Date(),
+    }),
+  },
+];
+
 export function DateFilter() {
   const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(2024, 0, 1),
+    from: subDays(new Date(), 7),
     to: new Date(),
   });
+  const [activePreset, setActivePreset] = React.useState<string>("Last 7 Days");
+
+  const handlePresetClick = (preset: typeof presets[0]) => {
+    setDate(preset.getValue());
+    setActivePreset(preset.label);
+  };
 
   return (
-    <div className="flex items-center gap-4 mb-6 p-4 bg-card rounded-lg border border-border">
-      <span className="text-sm font-medium text-muted-foreground">Filter Tanggal:</span>
+    <div className="flex flex-wrap items-center gap-3 mb-6 p-4 bg-card rounded-lg border border-border">
+      <span className="text-sm font-medium text-muted-foreground">Filter:</span>
+      
+      {/* Preset Buttons */}
+      <div className="flex flex-wrap gap-2">
+        {presets.map((preset) => (
+          <Button
+            key={preset.label}
+            variant={activePreset === preset.label ? "default" : "outline"}
+            size="sm"
+            onClick={() => handlePresetClick(preset)}
+            className="text-xs"
+          >
+            {preset.label}
+          </Button>
+        ))}
+      </div>
+
+      {/* Custom Date Range Picker */}
       <Popover>
         <PopoverTrigger asChild>
           <Button
-            id="date"
-            variant={"outline"}
+            variant={activePreset === "custom" ? "default" : "outline"}
+            size="sm"
             className={cn(
-              "w-[300px] justify-start text-left font-normal",
+              "justify-start text-left font-normal text-xs",
               !date && "text-muted-foreground"
             )}
           >
@@ -41,7 +109,7 @@ export function DateFilter() {
                 format(date.from, "dd MMM yyyy")
               )
             ) : (
-              <span>Pilih tanggal</span>
+              <span>Custom Range</span>
             )}
           </Button>
         </PopoverTrigger>
@@ -51,15 +119,15 @@ export function DateFilter() {
             mode="range"
             defaultMonth={date?.from}
             selected={date}
-            onSelect={setDate}
+            onSelect={(newDate) => {
+              setDate(newDate);
+              setActivePreset("custom");
+            }}
             numberOfMonths={2}
             className={cn("p-3 pointer-events-auto")}
           />
         </PopoverContent>
       </Popover>
-      <Button variant="default" size="sm">
-        Terapkan
-      </Button>
     </div>
   );
 }
