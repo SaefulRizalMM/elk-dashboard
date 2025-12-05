@@ -1,7 +1,20 @@
-import { Activity, Server, Users, Shield, ChevronRight, ChevronDown } from "lucide-react";
+import { Activity, Users, ChevronRight, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarHeader,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  useSidebar,
+} from "@/components/ui/sidebar";
+import { Shield } from "lucide-react";
 
 interface SubNavItem {
   label: string;
@@ -31,6 +44,8 @@ const navItems: NavItem[] = [
 
 export function DashboardSidebar() {
   const location = useLocation();
+  const { state } = useSidebar();
+  const isCollapsed = state === "collapsed";
   const [expandedItems, setExpandedItems] = useState<string[]>(["Monitoring Transaksional"]);
 
   const toggleExpand = (label: string) => {
@@ -49,89 +64,90 @@ export function DashboardSidebar() {
   };
 
   return (
-    <aside className="w-64 min-h-screen bg-sidebar flex flex-col">
-      {/* Logo */}
-      <div className="p-6 flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-          <Activity className="w-5 h-5 text-primary-foreground" />
+    <Sidebar collapsible="icon">
+      <SidebarHeader className="p-4">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shrink-0">
+            <Activity className="w-5 h-5 text-primary-foreground" />
+          </div>
+          {!isCollapsed && (
+            <span className="text-sidebar-primary font-semibold text-lg">
+              KAI RTS Monitoring
+            </span>
+          )}
         </div>
-        <span className="text-sidebar-primary font-semibold text-lg">
-          KAI RTS Monitoring
-        </span>
-      </div>
+      </SidebarHeader>
 
-      {/* Navigation */}
-      <nav className="flex-1 px-4 py-6">
-        <ul className="space-y-2">
-          {navItems.map((item) => (
-            <li key={item.label}>
-              {item.subItems ? (
-                <div>
-                  <button
-                    onClick={() => toggleExpand(item.label)}
-                    className={cn(
-                      "w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200",
-                      isSubItemActive(item)
-                        ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                        : "text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground"
-                    )}
-                  >
-                    <item.icon className="w-5 h-5" />
-                    <span className="flex-1 text-left">{item.label}</span>
-                    {expandedItems.includes(item.label) ? (
-                      <ChevronDown className="w-4 h-4" />
-                    ) : (
-                      <ChevronRight className="w-4 h-4" />
-                    )}
-                  </button>
-                  
-                  {/* Sub Items */}
-                  {expandedItems.includes(item.label) && (
-                    <ul className="mt-1 ml-4 pl-4 border-l border-sidebar-border space-y-1">
-                      {item.subItems.map((subItem) => (
-                        <li key={subItem.path}>
-                          <NavLink
-                            to={subItem.path}
-                            className={({ isActive }) => cn(
-                              "block px-3 py-2 rounded-md text-sm transition-all duration-200",
-                              isActive
-                                ? "bg-sidebar-accent/70 text-sidebar-accent-foreground font-medium"
-                                : "text-sidebar-foreground/80 hover:bg-sidebar-accent/30 hover:text-sidebar-accent-foreground"
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {navItems.map((item) => (
+                <SidebarMenuItem key={item.label}>
+                  {item.subItems ? (
+                    <div>
+                      <SidebarMenuButton
+                        onClick={() => toggleExpand(item.label)}
+                        isActive={isSubItemActive(item)}
+                        tooltip={item.label}
+                      >
+                        <item.icon className="w-5 h-5" />
+                        {!isCollapsed && (
+                          <>
+                            <span className="flex-1 text-left">{item.label}</span>
+                            {expandedItems.includes(item.label) ? (
+                              <ChevronDown className="w-4 h-4" />
+                            ) : (
+                              <ChevronRight className="w-4 h-4" />
                             )}
-                          >
-                            {subItem.label}
-                          </NavLink>
-                        </li>
-                      ))}
-                    </ul>
+                          </>
+                        )}
+                      </SidebarMenuButton>
+                      
+                      {/* Sub Items */}
+                      {!isCollapsed && expandedItems.includes(item.label) && (
+                        <ul className="mt-1 ml-4 pl-4 border-l border-sidebar-border space-y-1">
+                          {item.subItems.map((subItem) => (
+                            <li key={subItem.path}>
+                              <NavLink
+                                to={subItem.path}
+                                className={({ isActive }) => cn(
+                                  "block px-3 py-2 rounded-md text-sm transition-all duration-200",
+                                  isActive
+                                    ? "bg-sidebar-accent/70 text-sidebar-accent-foreground font-medium"
+                                    : "text-sidebar-foreground/80 hover:bg-sidebar-accent/30 hover:text-sidebar-accent-foreground"
+                                )}
+                              >
+                                {subItem.label}
+                              </NavLink>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ) : (
+                    <SidebarMenuButton asChild isActive={item.path === location.pathname} tooltip={item.label}>
+                      <NavLink to={item.path || "/"}>
+                        <item.icon className="w-5 h-5" />
+                        {!isCollapsed && <span>{item.label}</span>}
+                      </NavLink>
+                    </SidebarMenuButton>
                   )}
-                </div>
-              ) : (
-                <NavLink
-                  to={item.path || "/"}
-                  className={({ isActive }) => cn(
-                    "w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200",
-                    isActive
-                      ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                      : "text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground"
-                  )}
-                >
-                  <item.icon className="w-5 h-5" />
-                  <span className="flex-1 text-left">{item.label}</span>
-                </NavLink>
-              )}
-            </li>
-          ))}
-        </ul>
-      </nav>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
 
-      {/* Footer */}
-      <div className="p-4 border-t border-sidebar-border">
-        <div className="flex items-center gap-3 px-4 py-2">
-          <Shield className="w-5 h-5 text-sidebar-foreground" />
-          <span className="text-sm text-sidebar-foreground">Secure Connection</span>
+      <SidebarFooter className="p-4 border-t border-sidebar-border">
+        <div className="flex items-center gap-3 px-2 py-2">
+          <Shield className="w-5 h-5 text-sidebar-foreground shrink-0" />
+          {!isCollapsed && (
+            <span className="text-sm text-sidebar-foreground">Secure Connection</span>
+          )}
         </div>
-      </div>
-    </aside>
+      </SidebarFooter>
+    </Sidebar>
   );
 }

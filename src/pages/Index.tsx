@@ -6,16 +6,21 @@ import { TransactionChart } from "@/components/dashboard/TransactionChart";
 import { TransactionSummary } from "@/components/dashboard/TransactionSummary";
 import { ChannelTable } from "@/components/dashboard/ChannelTable";
 import { useLocation } from "react-router-dom";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 const Index = () => {
   const location = useLocation();
   const showIbook = location.pathname === "/access-by-kai";
 
   return (
-    <div className="flex min-h-screen bg-background">
-      <DashboardSidebar />
-      
-      <main className="flex-1 p-8 overflow-auto">
+    <SidebarProvider>
+      <div className="flex min-h-screen w-full bg-background">
+        <DashboardSidebar />
+        
+        <main className="flex-1 p-8 overflow-auto">
+          <div className="flex items-center gap-4 mb-4">
+            <SidebarTrigger className="h-8 w-8" />
+          </div>
         <DashboardHeader />
         
         {/* Row 1 - Total Hits */}
@@ -157,8 +162,9 @@ const Index = () => {
           <TransactionSummary />
           <ChannelTable />
         </div>
-      </main>
-    </div>
+        </main>
+      </div>
+    </SidebarProvider>
   );
 };
 
