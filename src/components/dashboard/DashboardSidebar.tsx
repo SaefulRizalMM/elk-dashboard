@@ -16,7 +16,6 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { icon: Server, label: "Infrastruktur", path: "/infrastruktur" },
   { 
     icon: Activity, 
     label: "Monitoring Transaksional",
@@ -25,7 +24,6 @@ const navItems: NavItem[] = [
       { label: "Access By KAI Dashboard", path: "/access-by-kai" },
       { label: "B2B Service Dashboard", path: "/b2b-service" },
       { label: "Loket Service Dashboard", path: "/loket-service" },
-      { label: "KCI Dashboard", path: "/kci" },
     ]
   },
   { icon: Users, label: "User & Security", path: "/user-security" },
