@@ -5,9 +5,9 @@ import { ConversionFunnel } from "@/components/dashboard/ConversionFunnel";
 import { TransactionChart } from "@/components/dashboard/TransactionChart";
 import { TransactionSummary } from "@/components/dashboard/TransactionSummary";
 import { ChannelTable } from "@/components/dashboard/ChannelTable";
+import { DateFilter } from "@/components/dashboard/DateFilter";
 import { useLocation } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-
 const Index = () => {
   const location = useLocation();
   const showIbook = location.pathname === "/access-by-kai";
@@ -22,6 +22,9 @@ const Index = () => {
             <SidebarTrigger className="h-8 w-8" />
           </div>
         <DashboardHeader />
+        
+        {/* Date Filter */}
+        <DateFilter />
         
         {/* Row 1 - Total Hits */}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 mb-4">
